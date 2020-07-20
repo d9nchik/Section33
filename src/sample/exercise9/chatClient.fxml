@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<VBox fx:controller="sample.exercise9.ChatClientController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+      fx:controller="sample.exercise9.ChatClientController">
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
-    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Server" />
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Server"/>
     <ScrollPane prefHeight="200.0" prefWidth="200.0">
-        <TextArea fx:id="serverText" editable="false" prefHeight="114.0" prefWidth="389.0" wrapText="true" />
+        <TextArea fx:id="serverText" editable="false" prefHeight="114.0" prefWidth="389.0" wrapText="true"/>
     </ScrollPane>
-    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Client" />
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Client"/>
     <ScrollPane prefHeight="200.0" prefWidth="200.0">
-        <TextArea fx:id="clientText" prefHeight="114.0" prefWidth="389.0" wrapText="true" />
+        <TextArea fx:id="clientText" onKeyPressed="#keyPressed" prefHeight="114.0" prefWidth="389.0" wrapText="true"/>
     </ScrollPane>
 </VBox>

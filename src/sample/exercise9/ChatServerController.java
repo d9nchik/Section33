@@ -6,10 +6,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class ChatClientController {
+public class ChatServerController {
     @FXML
     private TextArea clientText, serverText;
 
@@ -20,7 +21,8 @@ public class ChatClientController {
     public void initialize() {
         new Thread(() -> {
             try {
-                Socket socket = new Socket("localhost", 5050);
+                ServerSocket socketServer = new ServerSocket(5050);
+                Socket socket = socketServer.accept();
                 inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                 outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
                 new Thread(this::updater).start();
@@ -34,7 +36,7 @@ public class ChatClientController {
     public void keyPressed(KeyEvent e) {
         if (e.getCode() == KeyCode.ENTER) {
             try {
-                outputStream.writeUTF(clientText.getText());
+                outputStream.writeUTF(serverText.getText());
                 outputStream.flush();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -45,7 +47,7 @@ public class ChatClientController {
     private void updater() {
         try {
             while (true) {
-                serverText.setText(inputStream.readUTF());
+                clientText.setText(inputStream.readUTF());
             }
         } catch (IOException e) {
             e.printStackTrace();
